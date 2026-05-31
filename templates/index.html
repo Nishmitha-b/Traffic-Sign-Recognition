@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Traffic Sign Classification</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins', sans-serif;
+        }
+
+        body{
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:30px;
+        }
+
+        .container{
+            width:100%;
+            max-width:700px;
+            background:white;
+            border-radius:20px;
+            padding:40px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.3);
+            text-align:center;
+        }
+
+        h1{
+            font-size:42px;
+            color:#1e3c72;
+            margin-bottom:15px;
+        }
+
+        p{
+            color:#666;
+            margin-bottom:30px;
+            font-size:18px;
+        }
+
+        .upload-box{
+            border:2px dashed #1e3c72;
+            padding:30px;
+            border-radius:15px;
+            margin-bottom:25px;
+            background:#f8fbff;
+        }
+
+        input[type="file"]{
+            margin-bottom:20px;
+            font-size:16px;
+        }
+
+        button{
+            background:#1e3c72;
+            color:white;
+            border:none;
+            padding:14px 35px;
+            font-size:18px;
+            border-radius:10px;
+            cursor:pointer;
+            transition:0.3s;
+            font-weight:600;
+        }
+
+        button:hover{
+            background:#16325c;
+            transform:scale(1.05);
+        }
+
+        .supported{
+            margin-top:25px;
+            text-align:left;
+            background:#f4f7fc;
+            padding:20px;
+            border-radius:15px;
+        }
+
+        .supported h3{
+            color:#1e3c72;
+            margin-bottom:10px;
+        }
+
+        .supported ul{
+            list-style:none;
+        }
+
+        .supported li{
+            padding:8px 0;
+            font-size:17px;
+        }
+
+        .supported li::before{
+            content:"✔ ";
+            color:green;
+            font-weight:bold;
+        }
+
+        .result-card{
+            margin-top:30px;
+            padding:25px;
+            border-radius:15px;
+            background:#f8fbff;
+            box-shadow:0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .prediction{
+            font-size:30px;
+            color:#1e3c72;
+            font-weight:700;
+            margin-bottom:10px;
+        }
+
+        .confidence{
+            font-size:22px;
+            color:green;
+            font-weight:600;
+        }
+
+        img{
+            width:100%;
+            max-width:350px;
+            border-radius:15px;
+            margin-top:25px;
+            border:4px solid #1e3c72;
+        }
+
+        .footer{
+            margin-top:25px;
+            color:#777;
+            font-size:14px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Traffic Sign Classification</h1>
+
+    <p>
+        Upload a traffic sign image and let AI identify it instantly
+    </p>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <div class="upload-box">
+
+            <input type="file" name="image" required>
+
+            <br>
+
+            <button type="submit">
+                Predict Sign
+            </button>
+
+        </div>
+
+    </form>
+
+    <div class="supported">
+
+        <h3>Supported Traffic Signs</h3>
+
+        <ul>
+            <li>Stop</li>
+            <li>Give Way</li>
+            <li>No Entry</li>
+            <li>Priority Road</li>
+            <li>Unknown</li>
+        </ul>
+
+    </div>
+
+    {% if image_file %}
+
+        <div class="result-card">
+
+            <img src="{{ image_file }}">
+
+            <div class="prediction">
+                Prediction: {{ prediction }}
+            </div>
+
+            <div class="confidence">
+                Confidence: {{ confidence }}%
+            </div>
+
+        </div>
+
+    {% endif %}
+
+    <div class="footer">
+        Powered by ResNet34 + PyTorch + Flask
+    </div>
+
+</div>
+
+</body>
+</html>
