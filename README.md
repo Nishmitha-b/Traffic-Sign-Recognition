@@ -91,5 +91,5 @@ Traffic-Sign-Recognition/
 
 ## Author
 
-Nikitha N Pavar
+Nishmitha B
 
